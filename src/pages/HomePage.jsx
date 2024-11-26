@@ -1,9 +1,11 @@
 import MovieList from '../components/MovieList/MovieList.jsx';
 import { fetchTrendingMovies } from '../movies-api';
 import { useEffect, useState } from 'react';
+import { useNavigate } from "react-router-dom";
 
 export default function HomePage() {
     const [movies, setMovies] = useState([]);
+    const navigate = useNavigate();
 
     useEffect(() => {
         const trendingMovies = async () => {
@@ -12,6 +14,7 @@ export default function HomePage() {
                 setMovies([...data.results]);
             } catch (error) {
                 console.error("Failed to fetch trending movies:", error);
+                navigate("*", { replace: true })
             }
         }
         trendingMovies();

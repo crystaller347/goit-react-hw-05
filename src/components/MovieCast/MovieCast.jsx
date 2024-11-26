@@ -1,11 +1,12 @@
 import css from './MovieCast.module.css';
 import { fetchMovieCast } from '../../movies-api';
 import { useEffect, useState } from 'react';
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 
 export default function MovieCast() {
     const [cast, setCast] = useState([]);
     const { movieId } = useParams();
+    const navigate = useNavigate();
 
     useEffect(() => {
         const movieCast = async () => {
@@ -14,6 +15,7 @@ export default function MovieCast() {
                 setCast(data);
             } catch (error) {
                 console.error("Failed to fetch movie cast:", error);
+                navigate("*", { replace: true })
             }
         }
         movieCast();

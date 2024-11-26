@@ -1,6 +1,6 @@
 import { fetchMovieDetails } from '../movies-api';
 import { useEffect, useState } from 'react';
-import { useParams, useLocation } from "react-router-dom";
+import { useParams, useLocation, useNavigate } from "react-router-dom";
 import { Link, Outlet } from 'react-router-dom';
 import { Suspense } from 'react';
 
@@ -9,6 +9,7 @@ export default function MovieDetailsPage() {
     const { movieId } = useParams();
     const location = useLocation();
     const backLinkHref = location.state?.from ?? "/movies";
+    const navigate = useNavigate();
 
     useEffect(() => {
         const movieDetails = async () => {
@@ -17,6 +18,7 @@ export default function MovieDetailsPage() {
                 setMovie(data);
             } catch (error) {
                 console.error("Failed to fetch movie details:", error);
+                navigate("*", { replace: true })
             }
         }
         movieDetails();

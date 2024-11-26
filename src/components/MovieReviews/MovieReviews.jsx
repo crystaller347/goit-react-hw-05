@@ -1,11 +1,12 @@
 import css from './MovieReviews.module.css';
 import { fetchMovieReviews } from '../../movies-api';
 import { useEffect, useState } from 'react';
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 
 export default function MovieReviews() {
     const [reviews, setReviews] = useState([]);
     const { movieId } = useParams();
+    const navigate = useNavigate();
 
     useEffect(() => {
         const movieReviews = async () => {
@@ -14,6 +15,7 @@ export default function MovieReviews() {
                 setReviews(data);
             } catch (error) {
                 console.error("Failed to fetch movie reviews:", error);
+                navigate("*", { replace: true })
             }
         }
         movieReviews();
