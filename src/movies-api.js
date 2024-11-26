@@ -9,7 +9,7 @@ const options = {
 }
 
 export const fetchTrendingMovies = async () => {
-    const response = await axios.get('3/trending/movie/week', options);
+    const response = await axios.get('3/trending/movie/day', options);
     return response.data;
 }
 
@@ -21,4 +21,9 @@ export const fetchMovieDetails = async (movieId) => {
 export const fetchMovieCast = async (movieId) => {
     const response = await axios.get(`3/movie/${movieId}/credits`, options);
     return response.data.cast;
+}
+
+export const fetchMovieReviews = async (movieId) => {
+    const response = await axios.get(`3/movie/${movieId}/reviews`, options);
+    return response.data.results;
 }
