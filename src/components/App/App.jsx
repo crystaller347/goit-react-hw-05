@@ -1,17 +1,19 @@
 import css from './App.module.css';
 import { Routes, Route } from 'react-router-dom';
 import { Suspense, lazy } from 'react';
-import Header from '../Header/Header.jsx';
+import Navigation from '../Navigation/Navigation.jsx';
 
 const HomePage = lazy(() => import('../../pages/HomePage'));
 const MovieDetailsPage = lazy(() => import('../../pages/MovieDetailsPage'));
+const MoviesPage = lazy(() => import('../../pages/MoviesPage'));
+const NotFoundPage = lazy(() => import('../../pages/NotFoundPage'));
 const MovieCast = lazy(() => import('../MovieCast/MovieCast'));
 const MovieReviews = lazy(() => import('../MovieReviews/MovieReviews'));
 
 export default function App() {
   return (
     <div>
-      <Header />
+      <Navigation />
 
       < Suspense fallback={< div > Loading page...</div >}>
         <Routes>

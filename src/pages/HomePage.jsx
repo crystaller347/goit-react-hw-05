@@ -10,8 +10,8 @@ export default function HomePage() {
             try {
                 const data = await fetchTrendingMovies();
                 setMovies([...data.results]);
-            } catch {
-                return "Oops, there seems to be a problem with loading your content, try refreshing the page!"
+            } catch (error) {
+                console.error("Failed to fetch trending movies:", error);
             }
         }
         trendingMovies();
