@@ -19,8 +19,8 @@ export default function App() {
         <Routes>
           <Route path='/' element={<HomePage />} />
           <Route path='/movies/:movieId' element={<MovieDetailsPage />}>
-            {/* <Route path='cast' element={<MovieCast />}>Cast</Route>
-            <Route path='reviews' element={<MovieReviews />}>Reviews</Route> */}
+            <Route path='cast' element={<MovieCast />}>Cast</Route>
+            {/* <Route path='reviews' element={<MovieReviews />}>Reviews</Route> */}
           </Route>
         </Routes>
       </Suspense >
