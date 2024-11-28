@@ -22,6 +22,7 @@ export default function App() {
             <Route path='cast' element={<MovieCast />}>Cast</Route>
             <Route path='reviews' element={<MovieReviews />}>Reviews</Route>
           </Route>
+          <Route path='/movies' element={<MoviesPage />}></Route>
           <Route path='*' element={<NotFoundPage />} />
         </Routes>
       </Suspense >

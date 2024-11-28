@@ -15,7 +15,7 @@ export default function MovieReviews() {
                 setReviews(data);
             } catch (error) {
                 console.error("Failed to fetch movie reviews:", error);
-                navigate("*", { replace: true })
+                navigate("*", { replace: true });
             }
         }
         movieReviews();

@@ -1,15 +1,18 @@
 import css from './MovieList.module.css';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
-export default function MovieList({ movies }) {
+export default function MovieList({ movies = [], searchResults = [] }) {
+    const location = useLocation();
+    const items = [...movies, ...searchResults];
+
     return (
         <ul>
-            {movies.map(({ id, title }) => (
+            {items.map(({ id, title }) => (
                 <li key={id}>
                     <Link to={`/movies/${id}`} state={{ from: location.pathname }}>{title}</Link>
                 </li>
             ))
             }
-        </ul >
+        </ul>
     )
 }

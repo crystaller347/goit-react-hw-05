@@ -14,7 +14,7 @@ export default function HomePage() {
                 setMovies([...data.results]);
             } catch (error) {
                 console.error("Failed to fetch trending movies:", error);
-                navigate("*", { replace: true })
+                navigate("*", { replace: true });
             }
         }
         trendingMovies();

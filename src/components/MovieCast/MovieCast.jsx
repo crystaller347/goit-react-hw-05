@@ -15,7 +15,7 @@ export default function MovieCast() {
                 setCast(data);
             } catch (error) {
                 console.error("Failed to fetch movie cast:", error);
-                navigate("*", { replace: true })
+                navigate("*", { replace: true });
             }
         }
         movieCast();

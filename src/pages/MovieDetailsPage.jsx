@@ -18,7 +18,7 @@ export default function MovieDetailsPage() {
                 setMovie(data);
             } catch (error) {
                 console.error("Failed to fetch movie details:", error);
-                navigate("*", { replace: true })
+                navigate("*", { replace: true });
             }
         }
         movieDetails();
