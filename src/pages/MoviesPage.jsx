@@ -1,33 +1,34 @@
 import MovieList from '../components/MovieList/MovieList.jsx';
 import { useState, useEffect } from 'react';
 import { fetchSearchResults } from '../movies-api';
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 
 export default function MoviesPage() {
-    const [query, setQuery] = useState('');
     const [searchResults, setSearchResults] = useState([]);
+    const [searchParams, setSearchParams] = useSearchParams();
+    const query = searchParams.get('query') ?? '';
     const navigate = useNavigate();
-
-    const handleSend = (query) => {
-        setQuery(query);
-    }
 
     const handleSubmit = (event) => {
         event.preventDefault();
         const form = event.target;
         const searchInput = form.elements.search.value.trim();
-        handleSend(searchInput);
+        if (searchInput) {
+            setSearchParams({ query: searchInput });
+        }
         form.reset();
     }
 
     useEffect(() => {
         if (!query) {
+            setSearchResults([]);
             return;
         }
         const movieSearch = async () => {
             try {
+                history.replaceState(query, "", "/movies");
                 const data = await fetchSearchResults(query);
-                setSearchResults([...data]);
+                setSearchResults(data);
             } catch (error) {
                 console.error("Failed to fetch movie search results:", error);
                 navigate("*", { replace: true });
@@ -42,6 +43,7 @@ export default function MoviesPage() {
                 <input type="text" name='search' placeholder='Find a movie...' />
                 <button type='submit'>Search</button>
             </form>
+            {searchResults.length === 0 && query && (<p>No results found for "{query}"</p>)}
             <MovieList searchResults={searchResults} />
         </div>
     )
