@@ -1,13 +1,14 @@
 import MovieList from '../components/MovieList/MovieList.jsx';
-import { useState, useEffect } from 'react';
+import useFetch from '../hooks.js';
 import { fetchSearchResults } from '../movies-api';
-import { useNavigate, useSearchParams } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
 
 export default function MoviesPage() {
-    const [searchResults, setSearchResults] = useState([]);
     const [searchParams, setSearchParams] = useSearchParams();
     const query = searchParams.get('query') ?? '';
-    const navigate = useNavigate();
+    const { data, error, loading } = useFetch(fetchSearchResults, query);
+    if (loading) return <p>Loading...</p>;
+    if (error) return <p>Error: {error.message}</p>;
 
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -19,23 +20,7 @@ export default function MoviesPage() {
         form.reset();
     }
 
-    useEffect(() => {
-        if (!query) {
-            setSearchResults([]);
-            return;
-        }
-        const movieSearch = async () => {
-            try {
-                history.replaceState(query, "", "/movies");
-                const data = await fetchSearchResults(query);
-                setSearchResults(data);
-            } catch (error) {
-                console.error("Failed to fetch movie search results:", error);
-                navigate("*", { replace: true });
-            }
-        }
-        movieSearch();
-    }, [query])
+    const movies = Array.isArray(data) ? data : data?.results ?? [];
 
     return (
         <div>
@@ -43,8 +28,8 @@ export default function MoviesPage() {
                 <input type="text" name='search' placeholder='Find a movie...' />
                 <button type='submit'>Search</button>
             </form>
-            {searchResults.length === 0 && query && (<p>No results found for "{query}"</p>)}
-            <MovieList searchResults={searchResults} />
+            {movies?.length === 0 && query && (<p>No results found for "{query}"</p>)}
+            <MovieList searchResults={movies} />
         </div>
     )
 }
