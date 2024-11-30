@@ -25,12 +25,14 @@ export default function MoviesPage() {
 
     return (
         <div>
-            <form onSubmit={handleSubmit}>
-                <input type="text" name='search' placeholder='Find a movie...' />
-                <button type='submit'>Search</button>
+            <form className={css.form} onSubmit={handleSubmit}>
+                <input className={css.input} type="text" name='search' placeholder='Find a movie...' />
+                <button className={css.button} type='submit'>Search</button>
             </form>
             {movies?.length === 0 && query && (<p>No results found for "{query}"</p>)}
-            <MovieList searchResults={movies} />
+            <div className={css.list}>
+                <MovieList searchResults={movies} />
+            </div>
         </div>
     )
 }

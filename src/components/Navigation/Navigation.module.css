@@ -11,6 +11,7 @@
   text-decoration: none;
 }
 
-.navLink:hover {
+.navLink:hover,
+.active {
   color: tomato;
 }
