@@ -1,0 +1,14 @@
+.listItem:not(:last-child) {
+  margin-bottom: 4px;
+}
+
+.link {
+  text-decoration: none;
+  color: blue;
+}
+
+.link:hover {
+  color: darkviolet;
+  text-shadow: 1px 1px 2px pink;
+  background-color: yellow;
+}

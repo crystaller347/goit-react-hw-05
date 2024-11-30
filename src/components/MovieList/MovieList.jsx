@@ -8,8 +8,8 @@ export default function MovieList({ movies = [], searchResults = [] }) {
     return (
         <ul>
             {items.map(({ id, title }) => (
-                <li key={id}>
-                    <Link to={`/movies/${id}`} state={{ from: location }}>{title}</Link>
+                <li className={css.listItem} key={id}>
+                    <Link className={css.link} to={`/movies/${id}`} state={{ from: location }}>{title}</Link>
                 </li>
             ))
             }

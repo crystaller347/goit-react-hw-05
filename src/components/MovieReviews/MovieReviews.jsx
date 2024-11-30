@@ -14,10 +14,10 @@ export default function MovieReviews() {
     }
 
     return (
-        <ul>
+        <ul className={css.list}>
             {data?.map(({ id, author, content }) => (
-                <li key={id}>
-                    <p>Author: {author}</p>
+                <li className={css.listItem} key={id}>
+                    <p className={css.author}><b>A review by {author}</b></p>
                     <p>{content}</p>
                 </li>
             ))}
