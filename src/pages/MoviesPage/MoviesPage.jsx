@@ -1,6 +1,7 @@
-import MovieList from '../components/MovieList/MovieList.jsx';
-import useFetch from '../hooks.js';
-import { fetchSearchResults } from '../movies-api';
+import css from './MoviesPage.module.css';
+import MovieList from '../../components/MovieList/MovieList.jsx';
+import useFetch from '../../hooks.js';
+import { fetchSearchResults } from '../../movies-api.js';
 import { useSearchParams } from "react-router-dom";
 
 export default function MoviesPage() {

@@ -1,6 +1,7 @@
-import { fetchMovieDetails } from '../movies-api';
+import css from './MovieDetailsPage.module.css';
+import { fetchMovieDetails } from '../../movies-api';
 import { useParams, useLocation } from "react-router-dom";
-import useFetch from '../hooks.js';
+import useFetch from '../../hooks.js';
 import { Link, Outlet } from 'react-router-dom';
 import { Suspense } from 'react';
 
